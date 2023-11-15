@@ -14,6 +14,7 @@ async function run() {
   }
   const new_version = version;
   core.info(`New version: ${new_version}`);
+  core.setOutput("new_version", new_version);
 }
 
 async function bumpSemver(
