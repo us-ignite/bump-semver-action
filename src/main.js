@@ -2,11 +2,11 @@ const core = require("@actions/core");
 const semver = require("semver");
 
 async function run() {
+  var version = "";
   try {
     const currentVersion = core.getInput('current_version');
     const bumpLevel = core.getInput('level');
-    // @ts-ignore github actions output variables are just constants declared in the async top level scope
-    const version = await bumpSemver(currentVersion, bumpLevel);
+    version = await bumpSemver(currentVersion, bumpLevel);
 
   } catch (e) {
     core.error(e);
