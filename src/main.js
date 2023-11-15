@@ -1,23 +1,24 @@
-import * as core from '@actions/core';
-import * as semver from 'semver';
+const core = require("@actions/core");
+const semver = require("semver");
 
-async function run(): Promise<void> {
+async function run() {
   try {
     const currentVersion = core.getInput('current_version');
     const bumpLevel = core.getInput('level');
     // @ts-ignore github actions output variables are just constants declared in the async top level scope
-    const new_version = await bumpSemver(currentVersion, bumpLevel);
+    const version = await bumpSemver(currentVersion, bumpLevel);
 
   } catch (e) {
-    core.error(e as Error);
-    core.setFailed((e as Error).message);
+    core.error(e);
+    core.setFailed(e.message);
   }
+  const new_version = version;
 }
 
 async function bumpSemver(
-  currentVersion: string,
-  bumpLevel: string
-): Promise<string | null> {
+  currentVersion,
+  bumpLevel
+) {
   if (!semver.valid(currentVersion)) {
     throw new Error(`${currentVersion} is not a valid semver`);
   }
@@ -42,7 +43,7 @@ async function bumpSemver(
   return newVersion;
 }
 
-function isReleaseType(s: string): s is semver.ReleaseType {
+function isReleaseType(s) {
   return [
     'major',
     'premajor',
