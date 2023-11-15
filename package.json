@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Bump a semver version up.",
-  "main": "dist/main.js",
-  "scripts": {
-    "build": "ncc build src/main.js -o dist"
-  },
+  "main": "src/main.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/actions-ecosystem/action-bump-semver.git"
