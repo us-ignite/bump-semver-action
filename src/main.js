@@ -13,6 +13,7 @@ async function run() {
     core.setFailed(e.message);
   }
   const new_version = version;
+  core.info(`New version: ${new_version}`);
 }
 
 async function bumpSemver(
