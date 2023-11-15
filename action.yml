@@ -14,7 +14,7 @@ outputs:
     description: The bumped semver version.
 runs:
   using: node12
-  main: dist/index.js
+  main: lib/main.js
 branding:
   icon: bookmark
   color: white
