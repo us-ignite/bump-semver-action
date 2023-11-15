@@ -9,6 +9,10 @@ inputs:
     description: A semver update level ({major, premajor, minor, preminor, patch, prepatch, prerelease}).
     required: false
     default: minor
+  preid:
+    description: the name of the prerelease identifier.
+    required: false
+    default: pr
 outputs:
   new_version:
     description: The bumped semver version.

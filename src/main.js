@@ -6,7 +6,8 @@ async function run() {
   try {
     const currentVersion = core.getInput('current_version');
     const bumpLevel = core.getInput('level');
-    version = await bumpSemver(currentVersion, bumpLevel);
+    const preid = core.getInput('preid');
+    version = await bumpSemver(currentVersion, bumpLevel, preid);
 
   } catch (e) {
     core.error(e);
@@ -19,7 +20,8 @@ async function run() {
 
 async function bumpSemver(
   currentVersion,
-  bumpLevel
+  bumpLevel,
+  preid
 ) {
   if (!semver.valid(currentVersion)) {
     throw new Error(`${currentVersion} is not a valid semver`);
@@ -35,7 +37,7 @@ async function bumpSemver(
   // If the current version has 'v' prefix (e.g., v1.2.3), keep the prefix in the new version too.
   const hasVPrefix = currentVersion.startsWith('v');
 
-  const bumpedVersion = semver.inc(currentVersion, bumpLevel);
+  const bumpedVersion = semver.inc(currentVersion, bumpLevel, preid);
 
   let newVersion = bumpedVersion;
   if (hasVPrefix) {
