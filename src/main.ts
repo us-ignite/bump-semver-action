@@ -5,12 +5,12 @@ async function run(): Promise<void> {
   try {
     const currentVersion = core.getInput('current_version');
     const bumpLevel = core.getInput('level');
+    // @ts-ignore github actions output variables are just constants declared in the async top level scope
+    const new_version = await bumpSemver(currentVersion, bumpLevel);
 
-    const newVersion = await bumpSemver(currentVersion, bumpLevel);
-    core.setOutput('new_version', newVersion);
-  } catch (e: any) {
-    core.error(e);
-    core.setFailed(e.message);
+  } catch (e) {
+    core.error(e as Error);
+    core.setFailed((e as Error).message);
   }
 }
 
