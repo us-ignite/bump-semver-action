@@ -17,7 +17,7 @@ outputs:
   new_version:
     description: The bumped semver version.
 runs:
-  using: node16
+  using: node20
   main: src/main.js
 branding:
   icon: bookmark
